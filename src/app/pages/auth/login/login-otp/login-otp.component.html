@@ -1,0 +1,42 @@
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <div class="main_img">
+      <img class="img" src="assets/images/z_trans_fav.png" />
+      <h3 class="logo-icon">ZOX-Driver</h3>
+    </div>
+  </ion-grid>
+
+
+  <ion-row>
+    <ion-col size="12">
+      <div class="main_content">
+
+        <h5 class="title">Check Your Phone</h5>
+        <h4 class="text">Please enter the OTP sent to your mobile phone to login to your account.</h4>
+
+
+
+        <div class="otp">
+          <ion-input-otp [(ngModel)]="value" name="otp" class="otp-input" type="tel">
+
+          </ion-input-otp>
+        </div>
+
+        <div class="sub_text_otp">
+          @if (resendOtp) {
+          <h6>Didn't get a code?.<span (click)="resetotp()">Resend the code</span></h6>
+          }
+          <h5>{{ timeLeft | timer }} Left</h5>
+        </div>
+
+
+        <ion-button class="content_button" expand="block" [disabled]="!value || value?.length < 4"
+          (click)="directPage()">
+          Verify
+        </ion-button>
+      </div>
+    </ion-col>
+  </ion-row>
+
+
+</ion-content>

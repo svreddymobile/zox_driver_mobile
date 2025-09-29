@@ -1,0 +1,65 @@
+<div class="ion-page" id="main-content">
+    <app-header></app-header>
+    <ion-content class="ion-padding">
+        <ion-router-outlet></ion-router-outlet>
+    </ion-content>
+
+    <!-- <app-footer></app-footer> -->
+</div>
+
+
+
+<ion-menu side="end" contentId="main-content" (ionDidOpen)="onMenuOpen()">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>ZOX-Driver</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding user-profile">
+
+
+
+
+        <ion-item lines="none" class="profile">
+            <ion-avatar aria-hidden="true" slot="start">
+                @if (userObj.profile_url) {
+                <img class="rounded-circle" width="30" [src]="userObj.profile_url" alt="Profile" />
+                }@else {
+                <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                }
+
+
+            </ion-avatar>
+            <ion-label>{{userObj?.full_name | titlecase}}
+                <br />
+                <span class="text-blue"> +91 {{userObj?.phone_number }}</span>
+            </ion-label>
+        </ion-item>
+        <ion-menu-toggle>
+
+
+            <ion-list lines="none" class="ion-margin-top list">
+
+                @if (platform.is('ios')) {
+                <ion-item (click)="logout('Delete Account','Are you sure, you want to in-active account?')"
+                    class="logout">
+                    <ion-icon name="log-out-outline" slot="start"></ion-icon>
+                    <ion-label>Delete Account</ion-label>
+                </ion-item>
+                }@else {
+                <ion-item (click)="logout('LOGOUT','Are you sure, you want to logout account?')" class="logout">
+                    <ion-icon name="log-out-outline" slot="start"></ion-icon>
+                    <ion-label>Logout</ion-label>
+                </ion-item>
+                }
+
+            </ion-list>
+        </ion-menu-toggle>
+
+
+        <ion-text class="version">
+            <h3>Version : {{version}}</h3>
+            <p>Copyright © 2025 Zift Technologies Pvt. Ltd. All Rights Reserved.</p>
+        </ion-text>
+    </ion-content>
+</ion-menu>

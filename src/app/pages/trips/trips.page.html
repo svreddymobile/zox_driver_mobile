@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+        Back </ion-button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  @if (totalRecords == 0) {
+  <ion-text color="danger" class="ion-text-center">No Trips Yet</ion-text>
+  }@else {
+  @for (item of trips; track $index) {
+
+
+  <ion-grid class="items">
+    <ion-row>
+      <ion-col size="12">
+        <div class="title">
+          <ion-label class="item-name">{{item.code | titlecase }}</ion-label>
+          <ion-label class="calery">{{item.rental_type | uppercase}}</ion-label>
+        </div>
+        <div class="item-detail">
+          <ion-label>
+            <ion-icon name="location-outline" color="primary"> </ion-icon>
+            {{item.pickup?.location}}
+          </ion-label>
+        </div>
+        <div class="item-price">
+          <ion-label class="price">{{item.pickup?.date | date}} -
+            {{item.pickup?.time}} </ion-label>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-buttons class="buttons">
+          <ion-button size="small" style="background: linear-gradient(#939cff, #5260ff);"
+            (click)="openDetails(item)">Details</ion-button>
+          &nbsp;&nbsp;
+
+
+
+        </ion-buttons>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+  }
+  }
+</ion-content>

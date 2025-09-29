@@ -1,0 +1,45 @@
+.searchbar {
+    // margin: 20px;
+    background: #ffff;
+    padding: 0px 15px 0px 10px;
+    border-radius: 30px;
+
+    ion-searchbar {
+        --background: #ffff;
+        --padding-start: 20px;
+        border-radius: 30px;
+    }
+
+}
+
+.item {
+    margin: 0.5rem 0px;
+
+    ion-row {
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        margin: 10px 0px 10px 0px;
+        background: #ffff;
+        border-radius: 10px;
+
+        ion-col {
+
+
+            h6 {
+                margin: 0px 0px 5px 0px;
+                padding-left: 10px;
+            }
+
+            ion-label {
+                font-size: 12px;
+                color: gray;
+                padding-left: 10px;
+
+            }
+
+
+        }
+
+    }
+}

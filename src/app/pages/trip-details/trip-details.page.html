@@ -1,0 +1,142 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Bookings Info</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Customer Details</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="none">
+        <ion-item>
+          <ion-label>
+            <p>{{bookingInfo?.customer?.name | titlecase }}</p>
+            <p>{{bookingInfo?.customer?.phone}}</p>
+            <ion-chip class="car-type" checked>{{bookingInfo?.car_type}}</ion-chip>
+
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content class="ion-no-padding">
+      <ion-item lines="none">
+        <ion-thumbnail slot="start">
+          @if (bookingInfo?.car_image) {
+          <img [src]="bookingInfo.car_image" alt="img">
+          }@else {
+          <img src="assets/shapes.svg" alt="img">
+          }
+
+
+        </ion-thumbnail>
+        <ion-label>
+          <h5>{{bookingInfo?.car?.number | uppercase}}</h5>
+          <p>{{bookingInfo?.car?.brand}} / {{bookingInfo?.car?.model}}</p>
+
+        </ion-label>
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Booking Details</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="none">
+        <ion-item>
+          <ion-label>
+            <h6> Booking Type</h6>
+            <p>{{bookingInfo?.rental_type | uppercase}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h6>Duration</h6>
+            <p>
+              @if (bookingInfo?.booking_type_id ==1) {
+              {{bookingInfo.duration}} Hours
+              }@else if (bookingInfo?.booking_type_id ==2) {
+              {{bookingInfo.duration_km}} KM
+              }
+            </p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h6>Pickup Location</h6>
+            <p>{{bookingInfo?.pickup?.location}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h6>Pickup Date & Time</h6>
+            <p>{{bookingInfo?.pickup?.date | date}}, {{bookingInfo?.pickup?.time}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h6>Drop Location</h6>
+            <p>{{bookingInfo?.drop?.location || '-----'}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h6>Return Date</h6>
+            <p>{{bookingInfo?.return_date ? (bookingInfo?.return_date | date) : '-----' }}</p>
+          </ion-label>
+        </ion-item>
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>
+
+<ion-footer class="pay-footer">
+  <ion-row>
+
+
+
+    @if (bookingInfo.status_id == 4) {
+    <ion-col size="12" class="ion-text-end">
+      <ion-button class="btn btn-secondary search-button content_button" type="button"
+        style="--background: linear-gradient(#97ffc1, #2dd36f);" (click)="startTrip()">
+        <i class="fa fa-forward" aria-hidden="true"></i> START TRIP
+      </ion-button>
+    </ion-col>
+
+    }
+
+    @if (bookingInfo.status_id == 5 && !bookingInfo.is_driver_end) {
+    <ion-col size="12" class="ion-text-end">
+      <ion-button class="btn btn-primary search-button content_button" type="button" (click)="endTrip()">
+        <i class="fa fa-forward" aria-hidden="true"></i> END TRIP
+      </ion-button>
+    </ion-col>
+    }
+
+
+    @if (bookingInfo.status_id == 5 && bookingInfo.is_driver_end) {
+    <ion-col size="12" class="ion-text-center">
+      <h4 class="ion-text-danger trip-text"> Trip Completed. Payment Pending from Customer</h4>
+    </ion-col>
+    }
+
+
+
+  </ion-row>
+
+
+</ion-footer>
