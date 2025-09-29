@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.zox.mobile',
-  appName: 'ZOX',
+  appId: 'com.zox.driver',
+  appName: 'ZOX Driver',
   webDir: 'www'
 };
 
